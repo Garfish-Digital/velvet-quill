@@ -1,0 +1,156 @@
+// Texture mixins and effects
+@mixin paper-grain() {
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 0.05) 1px, transparent 0),
+      radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.02) 1px, transparent 0);
+    background-size: 4px 4px, 3px 3px;
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
+@mixin velvet-overlay($opacity: 0.1) {
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      135deg,
+      rgba($primary-deep-velvet, $opacity) 0%,
+      rgba($primary-deep-velvet, $opacity * 0.5) 50%,
+      rgba($primary-deep-velvet, $opacity) 100%
+    );
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
+@mixin ink-bleed($color: $primary-midnight-black, $intensity: 0.1) {
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: radial-gradient(
+      ellipse at center,
+      rgba($color, $intensity) 0%,
+      rgba($color, $intensity * 0.5) 30%,
+      transparent 70%
+    );
+    filter: blur(3px);
+    z-index: -1;
+  }
+}
+
+@mixin candlelight-flicker() {
+  animation: candleFlicker 3s infinite;
+  
+  @keyframes candleFlicker {
+    0%, 100% { opacity: 1; }
+    25% { opacity: 0.95; }
+    50% { opacity: 0.98; }
+    75% { opacity: 0.92; }
+  }
+}
+
+@mixin page-curl($size: 20px) {
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: $size;
+    height: $size;
+    background: linear-gradient(
+      -45deg,
+      transparent 46%,
+      rgba($primary-midnight-black, 0.1) 50%,
+      rgba($primary-midnight-black, 0.05) 54%,
+      transparent 58%
+    );
+    transform: translateY(-1px) translateX(1px);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity $transition-medium;
+  }
+  
+  &:hover::after {
+    opacity: 1;
+  }
+}
+
+@mixin typewriter-cursor() {
+  position: relative;
+  
+  &::after {
+    content: '|';
+    color: $accent-gold-ink;
+    animation: typewriterCursor 1s infinite;
+    margin-left: 2px;
+  }
+  
+  @keyframes typewriterCursor {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+}
+
+// Sophisticated gradients
+@mixin velvet-gradient($direction: to bottom) {
+  background: linear-gradient(
+    $direction,
+    $primary-deep-velvet 0%,
+    darken($primary-deep-velvet, 5%) 25%,
+    $primary-deep-velvet 50%,
+    lighten($primary-deep-velvet, 3%) 75%,
+    $primary-deep-velvet 100%
+  );
+}
+
+@mixin rose-gradient($direction: to right) {
+  background: linear-gradient(
+    $direction,
+    $secondary-blush-rose 0%,
+    lighten($secondary-blush-rose, 5%) 50%,
+    $secondary-blush-rose 100%
+  );
+}
+
+@mixin gold-shimmer() {
+  background: linear-gradient(
+    90deg,
+    $accent-gold-ink 0%,
+    lighten($accent-gold-ink, 10%) 25%,
+    $accent-gold-ink 50%,
+    lighten($accent-gold-ink, 15%) 75%,
+    $accent-gold-ink 100%
+  );
+  background-size: 200% 100%;
+  animation: goldShimmer 2s infinite;
+  
+  @keyframes goldShimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+}

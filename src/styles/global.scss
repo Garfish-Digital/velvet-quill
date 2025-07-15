@@ -1,0 +1,322 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap');
+@import 'variables';
+@import 'textures';
+
+// Reset and base styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-serif;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: $secondary-cream;
+  background: $primary-midnight-black;
+  @include paper-grain();
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+// Typography hierarchy
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-serif;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: $spacing-lg;
+  color: $secondary-cream;
+}
+
+h1 {
+  font-size: 3.5rem;
+  letter-spacing: -0.02em;
+  
+  @media (max-width: $breakpoint-tablet) {
+    font-size: 2.5rem;
+  }
+}
+
+h2 {
+  font-size: 2.5rem;
+  letter-spacing: -0.01em;
+  
+  @media (max-width: $breakpoint-tablet) {
+    font-size: 2rem;
+  }
+}
+
+h3 {
+  font-size: 2rem;
+  
+  @media (max-width: $breakpoint-tablet) {
+    font-size: 1.5rem;
+  }
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+
+h5 {
+  font-size: 1.25rem;
+}
+
+h6 {
+  font-size: 1.125rem;
+}
+
+p {
+  margin-bottom: $spacing-md;
+  color: $secondary-cream;
+  opacity: 0.9;
+}
+
+// Links
+a {
+  color: $accent-gold-ink;
+  text-decoration: none;
+  transition: color $transition-medium;
+  
+  &:hover {
+    color: lighten($accent-gold-ink, 10%);
+    text-decoration: underline;
+  }
+}
+
+// Buttons
+.btn {
+  display: inline-block;
+  padding: $spacing-md $spacing-xl;
+  font-family: $font-sans;
+  font-weight: 500;
+  text-decoration: none;
+  border: none;
+  border-radius: $border-radius-md;
+  cursor: pointer;
+  transition: all $transition-medium;
+  position: relative;
+  overflow: hidden;
+  
+  &.btn-primary {
+    background: $primary-deep-velvet;
+    color: $secondary-cream;
+    @include velvet-overlay(0.05);
+    
+    &:hover {
+      background: lighten($primary-deep-velvet, 5%);
+      transform: translateY(-2px);
+      box-shadow: $shadow-velvet;
+    }
+  }
+  
+  &.btn-secondary {
+    background: transparent;
+    color: $accent-gold-ink;
+    border: 2px solid $accent-gold-ink;
+    
+    &:hover {
+      background: $accent-gold-ink;
+      color: $primary-midnight-black;
+      @include gold-shimmer();
+    }
+  }
+  
+  &.btn-ghost {
+    background: transparent;
+    color: $secondary-blush-rose;
+    border: 1px solid rgba($secondary-blush-rose, 0.3);
+    
+    &:hover {
+      background: rgba($secondary-blush-rose, 0.1);
+      border-color: $secondary-blush-rose;
+    }
+  }
+}
+
+// Sections
+.section {
+  padding: $spacing-xxxl 0;
+  position: relative;
+  
+  &.section-hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    @include velvet-gradient(to bottom);
+    @include velvet-overlay(0.1);
+  }
+  
+  &.section-dark {
+    background: $primary-midnight-black;
+  }
+  
+  &.section-velvet {
+    @include velvet-gradient(135deg);
+  }
+  
+  &.section-rose {
+    background: linear-gradient(
+      135deg,
+      rgba($secondary-blush-rose, 0.05) 0%,
+      rgba($secondary-blush-rose, 0.1) 100%
+    );
+  }
+}
+
+// Container
+.container {
+  max-width: $breakpoint-wide;
+  margin: 0 auto;
+  padding: 0 $spacing-lg;
+  
+  @media (max-width: $breakpoint-mobile) {
+    padding: 0 $spacing-md;
+  }
+}
+
+// Grid system
+.grid {
+  display: grid;
+  gap: $spacing-xl;
+  
+  &.grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+    
+    @media (max-width: $breakpoint-tablet) {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  &.grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+    
+    @media (max-width: $breakpoint-desktop) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @media (max-width: $breakpoint-mobile) {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  &.grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+    
+    @media (max-width: $breakpoint-desktop) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @media (max-width: $breakpoint-mobile) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+// Cards
+.card {
+  background: rgba($primary-midnight-black, 0.8);
+  border-radius: $border-radius-lg;
+  padding: $spacing-xl;
+  box-shadow: $shadow-medium;
+  border: 1px solid rgba($secondary-blush-rose, 0.1);
+  transition: all $transition-medium;
+  @include paper-grain();
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-strong;
+    border-color: rgba($secondary-blush-rose, 0.2);
+  }
+}
+
+// Utility classes
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.text-gold { color: $accent-gold-ink; }
+.text-rose { color: $secondary-blush-rose; }
+.text-crimson { color: $accent-deep-crimson; }
+.text-velvet { color: $primary-deep-velvet; }
+
+.mb-0 { margin-bottom: 0; }
+.mb-sm { margin-bottom: $spacing-sm; }
+.mb-md { margin-bottom: $spacing-md; }
+.mb-lg { margin-bottom: $spacing-lg; }
+.mb-xl { margin-bottom: $spacing-xl; }
+.mb-xxl { margin-bottom: $spacing-xxl; }
+
+.mt-0 { margin-top: 0; }
+.mt-sm { margin-top: $spacing-sm; }
+.mt-md { margin-top: $spacing-md; }
+.mt-lg { margin-top: $spacing-lg; }
+.mt-xl { margin-top: $spacing-xl; }
+.mt-xxl { margin-top: $spacing-xxl; }
+
+// Responsive utilities
+@media (max-width: $breakpoint-mobile) {
+  .hidden-mobile { display: none; }
+}
+
+@media (max-width: $breakpoint-tablet) {
+  .hidden-tablet { display: none; }
+}
+
+@media (max-width: $breakpoint-desktop) {
+  .hidden-desktop { display: none; }
+}
+
+// Animations
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.animate-slide-in-left {
+  animation: slideInFromLeft 0.8s ease forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInFromRight 0.8s ease forwards;
+}

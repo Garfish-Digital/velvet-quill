@@ -1,0 +1,217 @@
+---
+export interface Props {
+  text: string;
+  delay?: number;
+  speed?: number;
+  showCursor?: boolean;
+  cursorChar?: string;
+  className?: string;
+  tag?: string;
+}
+
+const { 
+  text, 
+  delay = 0, 
+  speed = 50, 
+  showCursor = true, 
+  cursorChar = '|',
+  className = '',
+  tag = 'span'
+} = Astro.props;
+
+const uniqueId = `typewriter-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+<Fragment>
+  {tag === 'h1' && (
+    <h1 class={`typewriter-text ${className}`} id={uniqueId} data-text={text} data-delay={delay} data-speed={speed} data-cursor={showCursor} data-cursor-char={cursorChar}>
+      <span class="typewriter-content"></span>
+      {showCursor && <span class="typewriter-cursor">{cursorChar}</span>}
+    </h1>
+  )}
+  {tag === 'h2' && (
+    <h2 class={`typewriter-text ${className}`} id={uniqueId} data-text={text} data-delay={delay} data-speed={speed} data-cursor={showCursor} data-cursor-char={cursorChar}>
+      <span class="typewriter-content"></span>
+      {showCursor && <span class="typewriter-cursor">{cursorChar}</span>}
+    </h2>
+  )}
+  {tag === 'h3' && (
+    <h3 class={`typewriter-text ${className}`} id={uniqueId} data-text={text} data-delay={delay} data-speed={speed} data-cursor={showCursor} data-cursor-char={cursorChar}>
+      <span class="typewriter-content"></span>
+      {showCursor && <span class="typewriter-cursor">{cursorChar}</span>}
+    </h3>
+  )}
+  {tag === 'p' && (
+    <p class={`typewriter-text ${className}`} id={uniqueId} data-text={text} data-delay={delay} data-speed={speed} data-cursor={showCursor} data-cursor-char={cursorChar}>
+      <span class="typewriter-content"></span>
+      {showCursor && <span class="typewriter-cursor">{cursorChar}</span>}
+    </p>
+  )}
+  {tag === 'span' && (
+    <span class={`typewriter-text ${className}`} id={uniqueId} data-text={text} data-delay={delay} data-speed={speed} data-cursor={showCursor} data-cursor-char={cursorChar}>
+      <span class="typewriter-content"></span>
+      {showCursor && <span class="typewriter-cursor">{cursorChar}</span>}
+    </span>
+  )}
+</Fragment>
+
+<style>
+  .typewriter-text {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .typewriter-content {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .typewriter-cursor {
+    color: #FFD700;
+    font-weight: normal;
+    animation: typewriter-blink 1.2s infinite;
+    margin-left: 2px;
+    position: relative;
+    z-index: 2;
+  }
+  
+  @keyframes typewriter-blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+  
+  .typewriter-text.typing .typewriter-cursor {
+    animation: none;
+    opacity: 1;
+  }
+  
+  .typewriter-text.finished .typewriter-cursor {
+    animation: typewriter-blink 1.2s infinite;
+  }
+  
+  /* Typewriter sound effect simulation */
+  .typewriter-text.typing::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 215, 0, 0.05) 45%,
+      rgba(255, 215, 0, 0.1) 50%,
+      rgba(255, 215, 0, 0.05) 55%,
+      transparent 100%
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+</style>
+
+<script>
+  class TypewriterReveal {
+    constructor(element) {
+      this.element = element;
+      this.text = element.dataset.text || '';
+      this.delay = parseInt(element.dataset.delay) || 0;
+      this.speed = parseInt(element.dataset.speed) || 50;
+      this.showCursor = element.dataset.cursor === 'true';
+      this.cursorChar = element.dataset.cursorChar || '|';
+      this.content = element.querySelector('.typewriter-content');
+      this.cursor = element.querySelector('.typewriter-cursor');
+      this.currentIndex = 0;
+      this.isTyping = false;
+      this.hasStarted = false;
+      
+      this.init();
+    }
+    
+    init() {
+      // Create intersection observer to trigger animation when visible
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !this.hasStarted) {
+            this.startTyping();
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      });
+      
+      observer.observe(this.element);
+    }
+    
+    startTyping() {
+      this.hasStarted = true;
+      
+      setTimeout(() => {
+        this.isTyping = true;
+        this.element.classList.add('typing');
+        this.type();
+      }, this.delay);
+    }
+    
+    type() {
+      if (this.currentIndex < this.text.length) {
+        // Add character with subtle delay variance for natural feel
+        const char = this.text[this.currentIndex];
+        this.content.textContent += char;
+        this.currentIndex++;
+        
+        // Variable speed based on character type
+        let nextSpeed = this.speed;
+        if (char === ' ') nextSpeed = this.speed * 0.3; // Faster for spaces
+        if (char === '.' || char === '!' || char === '?') nextSpeed = this.speed * 2; // Slower for punctuation
+        if (char === ',') nextSpeed = this.speed * 1.5; // Medium for commas
+        
+        // Add small random variation for natural feel
+        nextSpeed += (Math.random() - 0.5) * 20;
+        
+        setTimeout(() => this.type(), Math.max(10, nextSpeed));
+      } else {
+        this.isTyping = false;
+        this.element.classList.remove('typing');
+        this.element.classList.add('finished');
+        
+        // Remove cursor after a delay if specified
+        if (this.cursor && !this.showCursor) {
+          setTimeout(() => {
+            this.cursor.style.opacity = '0';
+          }, 2000);
+        }
+      }
+    }
+    
+    reset() {
+      this.currentIndex = 0;
+      this.isTyping = false;
+      this.hasStarted = false;
+      this.content.textContent = '';
+      this.element.classList.remove('typing', 'finished');
+      if (this.cursor) {
+        this.cursor.style.opacity = '1';
+      }
+    }
+  }
+  
+  // Initialize all typewriter elements
+  document.addEventListener('DOMContentLoaded', () => {
+    const typewriterElements = document.querySelectorAll('.typewriter-text');
+    typewriterElements.forEach(element => {
+      new TypewriterReveal(element);
+    });
+  });
+  
+  // Re-initialize on navigation (for SPAs)
+  document.addEventListener('astro:page-load', () => {
+    const typewriterElements = document.querySelectorAll('.typewriter-text');
+    typewriterElements.forEach(element => {
+      if (!element.typewriterInstance) {
+        element.typewriterInstance = new TypewriterReveal(element);
+      }
+    });
+  });
+</script>

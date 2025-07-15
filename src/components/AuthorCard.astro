@@ -1,0 +1,466 @@
+---
+import SecretContent from './SecretContent.astro';
+
+export interface Props {
+  name: string;
+  bio: string;
+  genre: string;
+  image: string;
+  excerpt: string;
+  bookTitle: string;
+  featured?: boolean;
+  website?: string;
+  social?: {
+    twitter?: string;
+    instagram?: string;
+    goodreads?: string;
+  };
+}
+
+const {
+  name,
+  bio,
+  genre,
+  image,
+  excerpt,
+  bookTitle,
+  featured = false,
+  website,
+  social = {}
+} = Astro.props;
+---
+
+<article class={`author-card ${featured ? 'author-card-featured' : ''}`}>
+  <!-- Card background with paper curl effect -->
+  <div class="author-card-background">
+    <div class="paper-curl"></div>
+  </div>
+  
+  <!-- Author image with velvet border -->
+  <div class="author-image-container">
+    <img 
+      src={image} 
+      alt={`Portrait of ${name}`} 
+      class="author-image"
+      loading="lazy"
+    />
+    <div class="image-overlay"></div>
+  </div>
+  
+  <!-- Author details -->
+  <div class="author-content">
+    <div class="author-header">
+      <h3 class="author-name">{name}</h3>
+      <span class="author-genre">{genre}</span>
+    </div>
+    
+    <p class="author-bio">{bio}</p>
+    
+    <!-- Featured work -->
+    <div class="author-work">
+      <h4 class="work-title">
+        <span class="work-label">Latest Work:</span>
+        <em>{bookTitle}</em>
+      </h4>
+      
+      <!-- Secret excerpt reveal -->
+      <SecretContent 
+        trigger="hover" 
+        revealText="Hover to read excerpt" 
+        maskStyle="veil"
+        className="excerpt-reveal"
+      >
+        <blockquote class="work-excerpt">
+          <p>"{excerpt}"</p>
+        </blockquote>
+      </SecretContent>
+    </div>
+    
+    <!-- Social links -->
+    <div class="author-social">
+      {website && (
+        <a href={website} target="_blank" rel="noopener noreferrer" class="social-link">
+          <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+          </svg>
+          <span>Website</span>
+        </a>
+      )}
+      
+      {social.twitter && (
+        <a href={social.twitter} target="_blank" rel="noopener noreferrer" class="social-link">
+          <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+          </svg>
+          <span>Twitter</span>
+        </a>
+      )}
+      
+      {social.instagram && (
+        <a href={social.instagram} target="_blank" rel="noopener noreferrer" class="social-link">
+          <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <path d="m16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+          </svg>
+          <span>Instagram</span>
+        </a>
+      )}
+      
+      {social.goodreads && (
+        <a href={social.goodreads} target="_blank" rel="noopener noreferrer" class="social-link">
+          <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+          </svg>
+          <span>Goodreads</span>
+        </a>
+      )}
+    </div>
+  </div>
+  
+  <!-- Decorative elements -->
+  <div class="card-decorations">
+    <div class="decoration-corner decoration-top-left"></div>
+    <div class="decoration-corner decoration-top-right"></div>
+    <div class="decoration-corner decoration-bottom-left"></div>
+    <div class="decoration-corner decoration-bottom-right"></div>
+  </div>
+  
+  <!-- Candlelight ambiance -->
+  <div class="candlelight-effect"></div>
+</article>
+
+<style>
+  .author-card {
+    position: relative;
+    background: rgba(10, 10, 10, 0.9);
+    border-radius: 16px;
+    border: 1px solid rgba(212, 165, 165, 0.2);
+    overflow: hidden;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .author-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 
+      0 8px 32px rgba(74, 14, 78, 0.3),
+      0 16px 64px rgba(0, 0, 0, 0.2);
+    border-color: rgba(212, 165, 165, 0.4);
+  }
+  
+  .author-card-featured {
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    background: linear-gradient(
+      135deg,
+      rgba(74, 14, 78, 0.1) 0%,
+      rgba(10, 10, 10, 0.9) 100%
+    );
+  }
+  
+  .author-card-featured:hover {
+    border-color: rgba(255, 215, 0, 0.6);
+    box-shadow: 
+      0 8px 32px rgba(255, 215, 0, 0.2),
+      0 16px 64px rgba(74, 14, 78, 0.3);
+  }
+  
+  .author-card-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FFF8E7' fill-opacity='0.02'%3E%3Cpath d='M30 30c0-1.1-.9-2-2-2s-2 .9-2 2 .9 2 2 2 2-.9 2-2zm0-20c0-1.1-.9-2-2-2s-2 .9-2 2 .9 2 2 2 2-.9 2-2zm0 40c0-1.1-.9-2-2-2s-2 .9-2 2 .9 2 2 2 2-.9 2-2zm20-20c0-1.1-.9-2-2-2s-2 .9-2 2 .9 2 2 2 2-.9 2-2zm-40 0c0-1.1-.9-2-2-2s-2 .9-2 2 .9 2 2 2 2-.9 2-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  .paper-curl {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(
+      -45deg,
+      transparent 46%,
+      rgba(255, 248, 231, 0.05) 50%,
+      rgba(255, 248, 231, 0.02) 54%,
+      transparent 58%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 2;
+  }
+  
+  .author-card:hover .paper-curl {
+    opacity: 1;
+  }
+  
+  .author-image-container {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 2rem auto 1rem;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid rgba(212, 165, 165, 0.3);
+    transition: all 0.3s ease;
+    z-index: 3;
+  }
+  
+  .author-card:hover .author-image-container {
+    border-color: rgba(255, 215, 0, 0.5);
+    transform: scale(1.05);
+  }
+  
+  .author-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .author-card:hover .author-image {
+    transform: scale(1.1);
+  }
+  
+  .image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(74, 14, 78, 0.1) 0%,
+      transparent 50%,
+      rgba(212, 165, 165, 0.1) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .author-card:hover .image-overlay {
+    opacity: 1;
+  }
+  
+  .author-content {
+    padding: 0 2rem 2rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 3;
+  }
+  
+  .author-header {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .author-name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #FFF8E7;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  .author-genre {
+    display: inline-block;
+    font-size: 0.9rem;
+    color: #D4A5A5;
+    background: rgba(212, 165, 165, 0.1);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    border: 1px solid rgba(212, 165, 165, 0.2);
+    font-style: italic;
+  }
+  
+  .author-bio {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #FFF8E7;
+    opacity: 0.8;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  .author-work {
+    margin-bottom: 1.5rem;
+    flex: 1;
+  }
+  
+  .work-title {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: #D4A5A5;
+    text-align: center;
+  }
+  
+  .work-label {
+    font-weight: normal;
+    opacity: 0.7;
+    margin-right: 0.5rem;
+  }
+  
+  .excerpt-reveal {
+    width: 100%;
+    min-height: 80px;
+    border-radius: 8px;
+    padding: 1rem;
+    border: 1px solid rgba(212, 165, 165, 0.1);
+    background: rgba(255, 248, 231, 0.02);
+  }
+  
+  .work-excerpt {
+    margin: 0;
+    font-style: italic;
+    color: #FFF8E7;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  
+  .work-excerpt p {
+    margin: 0;
+    opacity: 0.9;
+  }
+  
+  .author-social {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: auto;
+  }
+  
+  .social-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #D4A5A5;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.3s ease;
+    opacity: 0.8;
+  }
+  
+  .social-link:hover {
+    color: #FFD700;
+    opacity: 1;
+  }
+  
+  .social-icon {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+  }
+  
+  .card-decorations {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 2;
+  }
+  
+  .decoration-corner {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .decoration-top-left {
+    top: 1rem;
+    left: 1rem;
+    border-right: none;
+    border-bottom: none;
+  }
+  
+  .decoration-top-right {
+    top: 1rem;
+    right: 1rem;
+    border-left: none;
+    border-bottom: none;
+  }
+  
+  .decoration-bottom-left {
+    bottom: 1rem;
+    left: 1rem;
+    border-right: none;
+    border-top: none;
+  }
+  
+  .decoration-bottom-right {
+    bottom: 1rem;
+    right: 1rem;
+    border-left: none;
+    border-top: none;
+  }
+  
+  .author-card:hover .decoration-corner {
+    opacity: 1;
+  }
+  
+  .candlelight-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+      ellipse at 70% 30%,
+      rgba(255, 215, 0, 0.03) 0%,
+      transparent 50%
+    );
+    opacity: 0;
+    animation: candleFlicker 4s infinite;
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  .author-card:hover .candlelight-effect {
+    opacity: 1;
+  }
+  
+  @keyframes candleFlicker {
+    0%, 100% { opacity: 0.5; }
+    25% { opacity: 0.8; }
+    50% { opacity: 0.6; }
+    75% { opacity: 0.9; }
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .author-card {
+      min-height: 350px;
+    }
+    
+    .author-content {
+      padding: 0 1.5rem 1.5rem;
+    }
+    
+    .author-image-container {
+      width: 100px;
+      height: 100px;
+    }
+    
+    .author-name {
+      font-size: 1.25rem;
+    }
+    
+    .author-social {
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+  }
+</style>

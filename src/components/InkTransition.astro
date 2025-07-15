@@ -1,0 +1,378 @@
+---
+export interface Props {
+  direction?: 'up' | 'down' | 'left' | 'right' | 'radial';
+  color?: 'velvet' | 'crimson' | 'gold' | 'black' | 'rose';
+  intensity?: 'light' | 'medium' | 'heavy';
+  duration?: number;
+  trigger?: 'scroll' | 'hover' | 'click' | 'load';
+  className?: string;
+  id?: string;
+}
+
+const { 
+  direction = 'up',
+  color = 'velvet',
+  intensity = 'medium',
+  duration = 800,
+  trigger = 'scroll',
+  className = '',
+  id = `ink-transition-${Math.random().toString(36).substr(2, 9)}`
+} = Astro.props;
+
+const colorMap = {
+  velvet: '#4A0E4E',
+  crimson: '#8B0000',
+  gold: '#FFD700',
+  black: '#0A0A0A',
+  rose: '#D4A5A5'
+};
+
+const selectedColor = colorMap[color];
+---
+
+<div 
+  class={`ink-transition ink-transition-${direction} ink-transition-${intensity} ink-transition-${trigger} ${className}`}
+  id={id}
+  data-direction={direction}
+  data-color={selectedColor}
+  data-intensity={intensity}
+  data-duration={duration}
+  data-trigger={trigger}
+>
+  <slot />
+  
+  <!-- Ink overlay elements -->
+  <div class="ink-overlay" data-layer="1"></div>
+  <div class="ink-overlay" data-layer="2"></div>
+  <div class="ink-overlay" data-layer="3"></div>
+  <div class="ink-bleed-effect"></div>
+</div>
+
+<style>
+  .ink-transition {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .ink-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 1;
+    transition: opacity 0.3s ease;
+  }
+  
+  .ink-overlay[data-layer="1"] {
+    background: radial-gradient(
+      ellipse at center,
+      var(--ink-color, #4A0E4E) 0%,
+      transparent 70%
+    );
+    filter: blur(2px);
+  }
+  
+  .ink-overlay[data-layer="2"] {
+    background: radial-gradient(
+      ellipse at center,
+      var(--ink-color, #4A0E4E) 20%,
+      transparent 60%
+    );
+    filter: blur(4px);
+  }
+  
+  .ink-overlay[data-layer="3"] {
+    background: radial-gradient(
+      ellipse at center,
+      var(--ink-color, #4A0E4E) 40%,
+      transparent 50%
+    );
+    filter: blur(6px);
+  }
+  
+  .ink-bleed-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 2;
+    background: linear-gradient(
+      var(--ink-direction, 180deg),
+      transparent 0%,
+      var(--ink-color, #4A0E4E) 50%,
+      transparent 100%
+    );
+    transform: translateY(100%);
+    transition: all var(--ink-duration, 800ms) cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Direction-specific styles */
+  .ink-transition-up .ink-bleed-effect {
+    background: linear-gradient(
+      0deg,
+      transparent 0%,
+      var(--ink-color, #4A0E4E) 50%,
+      transparent 100%
+    );
+    transform: translateY(100%);
+  }
+  
+  .ink-transition-down .ink-bleed-effect {
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      var(--ink-color, #4A0E4E) 50%,
+      transparent 100%
+    );
+    transform: translateY(-100%);
+  }
+  
+  .ink-transition-left .ink-bleed-effect {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--ink-color, #4A0E4E) 50%,
+      transparent 100%
+    );
+    transform: translateX(100%);
+  }
+  
+  .ink-transition-right .ink-bleed-effect {
+    background: linear-gradient(
+      270deg,
+      transparent 0%,
+      var(--ink-color, #4A0E4E) 50%,
+      transparent 100%
+    );
+    transform: translateX(-100%);
+  }
+  
+  .ink-transition-radial .ink-bleed-effect {
+    background: radial-gradient(
+      circle at center,
+      var(--ink-color, #4A0E4E) 0%,
+      transparent 70%
+    );
+    transform: scale(0);
+    border-radius: 50%;
+  }
+  
+  /* Intensity variations */
+  .ink-transition-light .ink-overlay {
+    opacity: 0.1;
+  }
+  
+  .ink-transition-medium .ink-overlay {
+    opacity: 0.2;
+  }
+  
+  .ink-transition-heavy .ink-overlay {
+    opacity: 0.4;
+  }
+  
+  /* Active state */
+  .ink-transition.ink-active .ink-bleed-effect {
+    opacity: 0.3;
+  }
+  
+  .ink-transition.ink-active.ink-transition-up .ink-bleed-effect,
+  .ink-transition.ink-active.ink-transition-down .ink-bleed-effect {
+    transform: translateY(0);
+  }
+  
+  .ink-transition.ink-active.ink-transition-left .ink-bleed-effect,
+  .ink-transition.ink-active.ink-transition-right .ink-bleed-effect {
+    transform: translateX(0);
+  }
+  
+  .ink-transition.ink-active.ink-transition-radial .ink-bleed-effect {
+    transform: scale(1);
+  }
+  
+  .ink-transition.ink-active .ink-overlay {
+    opacity: 0.1;
+  }
+  
+  .ink-transition.ink-active.ink-transition-light .ink-overlay {
+    opacity: 0.05;
+  }
+  
+  .ink-transition.ink-active.ink-transition-medium .ink-overlay {
+    opacity: 0.1;
+  }
+  
+  .ink-transition.ink-active.ink-transition-heavy .ink-overlay {
+    opacity: 0.2;
+  }
+  
+  /* Hover trigger */
+  .ink-transition-hover:hover .ink-bleed-effect {
+    opacity: 0.2;
+  }
+  
+  .ink-transition-hover:hover.ink-transition-up .ink-bleed-effect,
+  .ink-transition-hover:hover.ink-transition-down .ink-bleed-effect {
+    transform: translateY(0);
+  }
+  
+  .ink-transition-hover:hover.ink-transition-left .ink-bleed-effect,
+  .ink-transition-hover:hover.ink-transition-right .ink-bleed-effect {
+    transform: translateX(0);
+  }
+  
+  .ink-transition-hover:hover.ink-transition-radial .ink-bleed-effect {
+    transform: scale(1);
+  }
+  
+  .ink-transition-hover:hover .ink-overlay {
+    opacity: 0.1;
+  }
+</style>
+
+<script>
+  class InkTransition {
+    constructor(element) {
+      this.element = element;
+      this.direction = element.dataset.direction || 'up';
+      this.color = element.dataset.color || '#4A0E4E';
+      this.intensity = element.dataset.intensity || 'medium';
+      this.duration = parseInt(element.dataset.duration) || 800;
+      this.trigger = element.dataset.trigger || 'scroll';
+      this.isActive = false;
+      this.hasTriggered = false;
+      
+      this.init();
+    }
+    
+    init() {
+      // Set CSS custom properties
+      this.element.style.setProperty('--ink-color', this.color);
+      this.element.style.setProperty('--ink-duration', `${this.duration}ms`);
+      
+      // Set up trigger
+      switch (this.trigger) {
+        case 'scroll':
+          this.setupScrollTrigger();
+          break;
+        case 'hover':
+          this.setupHoverTrigger();
+          break;
+        case 'click':
+          this.setupClickTrigger();
+          break;
+        case 'load':
+          this.activate();
+          break;
+      }
+    }
+    
+    setupScrollTrigger() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !this.hasTriggered) {
+            this.activate();
+            this.hasTriggered = true;
+          }
+        });
+      }, {
+        threshold: 0.2,
+        rootMargin: '0px 0px -50px 0px'
+      });
+      
+      observer.observe(this.element);
+    }
+    
+    setupHoverTrigger() {
+      this.element.addEventListener('mouseenter', () => {
+        this.activate();
+      });
+      
+      this.element.addEventListener('mouseleave', () => {
+        this.deactivate();
+      });
+    }
+    
+    setupClickTrigger() {
+      this.element.addEventListener('click', () => {
+        if (this.isActive) {
+          this.deactivate();
+        } else {
+          this.activate();
+        }
+      });
+    }
+    
+    activate() {
+      this.isActive = true;
+      this.element.classList.add('ink-active');
+      
+      // Add subtle animation stagger for multiple overlays
+      const overlays = this.element.querySelectorAll('.ink-overlay');
+      overlays.forEach((overlay, index) => {
+        setTimeout(() => {
+          overlay.style.opacity = this.getOpacityForLayer(index);
+        }, index * 50);
+      });
+      
+      // Trigger custom event
+      this.element.dispatchEvent(new CustomEvent('ink-transition-start', {
+        detail: { direction: this.direction, color: this.color }
+      }));
+    }
+    
+    deactivate() {
+      this.isActive = false;
+      this.element.classList.remove('ink-active');
+      
+      // Reset overlays
+      const overlays = this.element.querySelectorAll('.ink-overlay');
+      overlays.forEach(overlay => {
+        overlay.style.opacity = '0';
+      });
+      
+      // Trigger custom event
+      this.element.dispatchEvent(new CustomEvent('ink-transition-end', {
+        detail: { direction: this.direction, color: this.color }
+      }));
+    }
+    
+    getOpacityForLayer(layerIndex) {
+      const baseOpacity = {
+        light: 0.05,
+        medium: 0.1,
+        heavy: 0.2
+      }[this.intensity];
+      
+      return baseOpacity * (1 - layerIndex * 0.3);
+    }
+    
+    reset() {
+      this.deactivate();
+      this.hasTriggered = false;
+    }
+  }
+  
+  // Initialize all ink transition elements
+  document.addEventListener('DOMContentLoaded', () => {
+    const inkElements = document.querySelectorAll('.ink-transition');
+    inkElements.forEach(element => {
+      new InkTransition(element);
+    });
+  });
+  
+  // Re-initialize on navigation (for SPAs)
+  document.addEventListener('astro:page-load', () => {
+    const inkElements = document.querySelectorAll('.ink-transition');
+    inkElements.forEach(element => {
+      if (!element.inkTransitionInstance) {
+        element.inkTransitionInstance = new InkTransition(element);
+      }
+    });
+  });
+</script>
