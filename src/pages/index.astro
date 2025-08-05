@@ -1,77 +1,83 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import TypewriterReveal from '../components/TypewriterReveal.astro';
-import InkTransition from '../components/InkTransition.astro';
-import SecretContent from '../components/SecretContent.astro';
-import AuthorCard from '../components/AuthorCard.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import TypewriterReveal from "../components/TypewriterReveal.astro";
+import InkTransition from "../components/InkTransition.astro";
+import SecretContent from "../components/SecretContent.astro";
+import AuthorCard from "../components/AuthorCard.astro";
 
-const siteTitle = 'Velvet Quill - Where Passion Meets Prose';
-const siteDescription = 'A sophisticated literary collective for erotic and romance writers. Join our intimate salon of wordsmiths crafting stories that stir the soul.';
+const siteTitle = "Velvet Quill - Where Passion Meets Prose";
+const siteDescription =
+  "A sophisticated literary collective for erotic and romance writers. Join our intimate salon of wordsmiths crafting stories that stir the soul.";
 
 // Sample author data
 const authors = [
   {
-    name: 'Isabella Crimson',
-    bio: 'Master of gothic romance with a passion for dark love stories that explore the depths of human desire.',
-    genre: 'Gothic Romance',
-    image: '/authors/isabella-crimson.jpg',
-    excerpt: 'In the shadows of the manor, their forbidden love bloomed like midnight roses, beautiful yet dangerous, promising ecstasy and ruin in equal measure.',
-    bookTitle: 'Midnight Roses',
+    name: "Isabella Crimson",
+    bio: "Master of gothic romance with a passion for dark love stories that explore the depths of human desire.",
+    genre: "Gothic Romance",
+    // image: '/authors/istockphoto-1424859254-1024x1024.jpg',
+    image: "/authors/isabella-crimson.jpg",
+    excerpt:
+      "In the shadows of the manor, their forbidden love bloomed like midnight roses, beautiful yet dangerous, promising ecstasy and ruin in equal measure.",
+    bookTitle: "Midnight Roses",
     featured: true,
-    website: 'https://isabellacrimson.com',
+    website: "https://isabellacrimson.com",
     social: {
-      twitter: 'https://twitter.com/isabellacrimson',
-      instagram: 'https://instagram.com/isabellacrimson'
-    }
+      twitter: "https://twitter.com/isabellacrimson",
+      instagram: "https://instagram.com/isabellacrimson",
+    },
   },
   {
-    name: 'Alexandre Noir',
-    bio: 'Contemporary romance author exploring the complexities of modern love with elegant prose and captivating characters.',
-    genre: 'Contemporary Romance',
-    image: '/authors/alexandre-noir.jpg',
-    excerpt: 'She traced the outline of his jaw with trembling fingers, knowing that this moment would change everything between them forever.',
-    bookTitle: 'City of Desires',
-    website: 'https://alexandrenoir.com',
+    name: "Alexandre Noir",
+    bio: "Historical romance specialist weaving tales of passion across centuries, from Victorian parlors to Renaissance courts.",
+    genre: "Historical Romance",
+    // image: '/authors/istockphoto-505805588-1024x1024.jpg',
+    image: "/authors/alexandre-noir.jpg",
+    excerpt:
+    "The candlelight danced across her silk gown as she stepped into the ballroom, unaware that destiny waited in the form of a mysterious duke.",
+    bookTitle: "The Duke's Secret",
+    website: "https://alexandrenoir.com",
     social: {
-      goodreads: 'https://goodreads.com/alexandrenoir'
-    }
+        goodreads: "https://goodreads.com/alexandrenoir",
+    },
+},
+{
+    name: "Scarlett Velvet",
+    bio: "Contemporary romance author exploring the complexities of modern love with elegant prose and captivating characters.",
+    genre: "Contemporary Romance",
+    image: "/authors/scarlett-velvet.jpg",
+    excerpt:
+    "She traced the outline of his jaw with trembling fingers, knowing that this moment would change everything between them forever.",
+    bookTitle: "City of Desires",
+    social: {
+      twitter: "https://twitter.com/scarlettvelvet",
+      instagram: "https://instagram.com/scarlettvelvet",
+    },
   },
-  {
-    name: 'Scarlett Velvet',
-    bio: 'Historical romance specialist weaving tales of passion across centuries, from Victorian parlors to Renaissance courts.',
-    genre: 'Historical Romance',
-    image: '/authors/scarlett-velvet.jpg',
-    excerpt: 'The candlelight danced across her silk gown as she stepped into the ballroom, unaware that destiny waited in the form of a mysterious duke.',
-    bookTitle: 'The Duke\'s Secret',
-    social: {
-      twitter: 'https://twitter.com/scarlettvelvet',
-      instagram: 'https://instagram.com/scarlettvelvet'
-    }
-  }
 ];
 
 const upcomingSalons = [
   {
-    title: 'The Art of Tension',
-    date: 'March 15, 2024',
-    time: '7:00 PM EST',
-    host: 'Isabella Crimson',
-    description: 'Learn to build irresistible romantic tension that keeps readers breathless.'
+    title: "The Art of Tension",
+    date: "March 15, 2024",
+    time: "7:00 PM EST",
+    host: "Isabella Crimson",
+    description: "Learn to build irresistible romantic tension that keeps readers breathless.",
   },
   {
-    title: 'Dialogue That Seduces',
-    date: 'March 22, 2024',
-    time: '8:00 PM EST',
-    host: 'Alexandre Noir',
-    description: 'Master the subtle art of conversation that reveals character and desire.'
+    title: "Historical Authenticity",
+    date: "March 22, 2024",
+    time: "8:00 PM EST",
+    host: "Alexandre Noir",
+    description: "Research techniques for creating believable historical romance settings.",
   },
   {
-    title: 'Historical Authenticity',
-    date: 'March 29, 2024',
-    time: '7:30 PM EST',
-    host: 'Scarlett Velvet',
-    description: 'Research techniques for creating believable historical romance settings.'
-  }
+    title: "Dialogue That Seduces",
+    date: "March 29, 2024",
+    time: "7:30 PM EST",
+    host: "Scarlett Velvet",
+    description: "Master the subtle art of conversation that reveals character and desire.",
+  },
 ];
 ---
 
@@ -80,15 +86,15 @@ const upcomingSalons = [
   <section class="section section-hero" id="hero">
     <div class="container">
       <div class="hero-content">
-        <TypewriterReveal 
+        <TypewriterReveal
           text="Where Passion Meets Prose"
           tag="h1"
           className="hero-title"
           delay={500}
           speed={80}
         />
-        
-        <TypewriterReveal 
+
+        <TypewriterReveal
           text="A sophisticated literary collective for writers who dare to explore the depths of human desire through elegant prose and captivating storytelling."
           tag="p"
           className="hero-subtitle"
@@ -96,22 +102,50 @@ const upcomingSalons = [
           speed={30}
           showCursor={false}
         />
-        
+
         <div class="hero-actions">
           <a href="#join" class="btn btn-primary">Join Our Collective</a>
-          <a href="#reading-room" class="btn btn-secondary">Explore the Library</a>
+          <a href="#reading-room" class="btn btn-secondary"
+            >Explore the Library</a
+          >
         </div>
       </div>
-      
+
       <!-- Decorative quill illustration -->
       <div class="hero-decoration">
         <div class="quill-container">
-          <svg class="quill-svg" viewBox="0 0 200 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M100 20C120 40 140 80 145 120C150 160 140 200 130 230C120 250 100 280 100 280" stroke="#FFD700" stroke-width="3" fill="none" opacity="0.7"/>
-            <path d="M100 280L95 270L105 270Z" fill="#FFD700" opacity="0.7"/>
-            <path d="M50 50C70 30 90 25 100 30" stroke="#D4A5A5" stroke-width="2" fill="none" opacity="0.5"/>
-            <path d="M60 80C80 60 95 55 100 60" stroke="#D4A5A5" stroke-width="2" fill="none" opacity="0.5"/>
-            <path d="M70 110C85 95 95 90 100 95" stroke="#D4A5A5" stroke-width="2" fill="none" opacity="0.5"/>
+          <svg
+            class="quill-svg"
+            viewBox="0 0 200 300"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M100 20C120 40 140 80 145 120C150 160 140 200 130 230C120 250 100 280 100 280"
+              stroke="#FFD700"
+              stroke-width="3"
+              fill="none"
+              opacity="0.7"></path>
+            <path d="M100 280L95 270L105 270Z" fill="#FFD700" opacity="0.7"
+            ></path>
+            <path
+              d="M50 50C70 30 90 25 100 30"
+              stroke="#D4A5A5"
+              stroke-width="2"
+              fill="none"
+              opacity="0.5"></path>
+            <path
+              d="M60 80C80 60 95 55 100 60"
+              stroke="#D4A5A5"
+              stroke-width="2"
+              fill="none"
+              opacity="0.5"></path>
+            <path
+              d="M70 110C85 95 95 90 100 95"
+              stroke="#D4A5A5"
+              stroke-width="2"
+              fill="none"
+              opacity="0.5"></path>
           </svg>
         </div>
       </div>
@@ -119,154 +153,198 @@ const upcomingSalons = [
   </section>
 
   <!-- Featured Authors Section -->
-  <InkTransition direction="up" color="velvet" intensity="light" trigger="scroll">
+  <InkTransition
+    direction="up"
+    color="velvet"
+    intensity="light"
+    trigger="scroll"
+  >
     <section class="section section-dark" id="authors">
       <div class="container">
         <div class="section-header">
           <h2 class="section-title">Our Distinguished Authors</h2>
           <p class="section-description">
-            Meet the talented writers who bring passion to every page, crafting stories that 
-            explore the beautiful complexities of love and desire.
+            Meet the talented writers who bring passion to every page, crafting
+            stories that explore the beautiful complexities of love and desire.
           </p>
         </div>
-        
+
         <div class="grid grid-3">
-          {authors.map((author) => (
-            <AuthorCard {...author} />
-          ))}
+          {authors.map((author) => <AuthorCard {...author} />)}
         </div>
       </div>
     </section>
   </InkTransition>
 
   <!-- Upcoming Salons Section -->
-  <InkTransition direction="left" color="rose" intensity="medium" trigger="scroll">
+  <InkTransition
+    direction="left"
+    color="rose"
+    intensity="medium"
+    trigger="scroll"
+  >
     <section class="section section-rose" id="salons">
       <div class="container">
         <div class="section-header">
           <h2 class="section-title">Upcoming Literary Salons</h2>
           <p class="section-description">
-            Join our intimate gatherings where writers share knowledge, inspire each other, 
-            and explore the craft of romantic storytelling.
+            Join our intimate gatherings where writers share knowledge, inspire
+            each other, and explore the craft of romantic storytelling.
           </p>
         </div>
-        
+
         <div class="salons-grid">
-          {upcomingSalons.map((salon) => (
-            <article class="salon-card">
-              <div class="salon-date">
-                <span class="date-day">{salon.date.split(' ')[1].replace(',', '')}</span>
-                <span class="date-month">{salon.date.split(' ')[0]}</span>
-                <span class="date-year">{salon.date.split(' ')[2]}</span>
-              </div>
-              
-              <div class="salon-content">
-                <h3 class="salon-title">{salon.title}</h3>
-                <p class="salon-description">{salon.description}</p>
-                
-                <div class="salon-details">
-                  <div class="salon-time">
-                    <svg class="detail-icon" viewBox="0 0 24 24" fill="currentColor">
-                      <circle cx="12" cy="12" r="10"/>
-                      <polyline points="12,6 12,12 16,14"/>
-                    </svg>
-                    <span>{salon.time}</span>
-                  </div>
-                  
-                  <div class="salon-host">
-                    <svg class="detail-icon" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                      <circle cx="12" cy="7" r="4"/>
-                    </svg>
-                    <span>Hosted by {salon.host}</span>
+          {
+            upcomingSalons.map((salon) => (
+              <article class="salon-card">
+                <div class="salon-date">
+                  <span class="date-day">
+                    {salon.date.split(" ")[1].replace(",", "")}
+                  </span>
+                  <span class="date-month">{salon.date.split(" ")[0]}</span>
+                  <span class="date-year">{salon.date.split(" ")[2]}</span>
+                </div>
+
+                <div class="salon-content">
+                  <h3 class="salon-title">{salon.title}</h3>
+                  <p class="salon-description">{salon.description}</p>
+
+                  <div class="salon-details">
+                    <div class="salon-time">
+                      <svg
+                        class="detail-icon"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                      >
+                        <circle cx="12" cy="12" r="10" />
+                        <polyline points="12,6 12,12 16,14" />
+                      </svg>
+                      <span>{salon.time}</span>
+                    </div>
+
+                    <div class="salon-host">
+                      <svg
+                        class="detail-icon"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                      >
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                      </svg>
+                      <span>Hosted by {salon.host}</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-              
-              <div class="salon-actions">
-                <button class="btn btn-ghost">Reserve Seat</button>
-              </div>
-            </article>
-          ))}
+
+                <div class="salon-actions">
+                  <button class="btn btn-ghost">Reserve Seat</button>
+                </div>
+              </article>
+            ))
+          }
         </div>
       </div>
     </section>
   </InkTransition>
 
   <!-- Reading Room Section -->
-  <InkTransition direction="radial" color="gold" intensity="light" trigger="scroll">
+  <InkTransition
+    direction="radial"
+    color="gold"
+    intensity="light"
+    trigger="scroll"
+  >
     <section class="section section-dark" id="reading-room">
       <div class="container">
         <div class="section-header">
           <h2 class="section-title">The Reading Room</h2>
           <p class="section-description">
-            Immerse yourself in carefully curated excerpts from our collective's most 
-            captivating works. Each piece a doorway to passion and artistry.
+            Immerse yourself in carefully curated excerpts from our collective's
+            most captivating works. Each piece a doorway to passion and
+            artistry.
           </p>
         </div>
-        
+
         <div class="reading-room-grid">
           <div class="excerpt-card">
             <div class="excerpt-header">
               <h3 class="excerpt-title">Whispers in Velvet</h3>
               <span class="excerpt-author">by Isabella Crimson</span>
             </div>
-            
-            <SecretContent trigger="hover" revealText="Hover to unveil" maskStyle="ink">
+
+            <SecretContent
+              trigger="hover"
+              revealText="Hover to unveil"
+              maskStyle="ink"
+            >
               <div class="excerpt-content">
                 <p>
-                  "The library held secrets in more than just its books. Between the leather-bound volumes 
-                  and beneath the watchful gaze of marble statues, Elena discovered that some stories 
-                  were meant to be lived, not merely read."
+                  "The library held secrets in more than just its books. Between
+                  the leather-bound volumes and beneath the watchful gaze of
+                  marble statues, Elena discovered that some stories were meant
+                  to be lived, not merely read."
                 </p>
                 <p>
-                  "His fingers traced the spine of Keats' collected works, but his eyes never left her face. 
-                  'Poetry,' he murmured, 'is the language of the soul when words alone fail to capture 
-                  the intensity of what we feel.'"
+                  "His fingers traced the spine of Keats' collected works, but
+                  his eyes never left her face. 'Poetry,' he murmured, 'is the
+                  language of the soul when words alone fail to capture the
+                  intensity of what we feel.'"
                 </p>
               </div>
             </SecretContent>
           </div>
-          
+
           <div class="excerpt-card">
             <div class="excerpt-header">
               <h3 class="excerpt-title">Metropolitan Hearts</h3>
               <span class="excerpt-author">by Alexandre Noir</span>
             </div>
-            
-            <SecretContent trigger="hover" revealText="Hover to unveil" maskStyle="veil">
+
+            <SecretContent
+              trigger="hover"
+              revealText="Hover to unveil"
+              maskStyle="veil"
+            >
               <div class="excerpt-content">
                 <p>
-                  "Rain painted the city in shades of longing, each droplet carrying the weight of 
-                  unspoken words between them. On the corner of Fifth and Main, where their worlds 
-                  collided, time seemed to pause."
+                  "Rain painted the city in shades of longing, each droplet
+                  carrying the weight of unspoken words between them. On the
+                  corner of Fifth and Main, where their worlds collided, time
+                  seemed to pause."
                 </p>
                 <p>
-                  "She stood beneath the amber streetlight, her silhouette a poem against the urban 
-                  canvas. He realized then that some encounters are not mere coincidence, but destiny 
-                  wearing the mask of chance."
+                  "She stood beneath the amber streetlight, her silhouette a
+                  poem against the urban canvas. He realized then that some
+                  encounters are not mere coincidence, but destiny wearing the
+                  mask of chance."
                 </p>
               </div>
             </SecretContent>
           </div>
-          
+
           <div class="excerpt-card">
             <div class="excerpt-header">
               <h3 class="excerpt-title">Regency Reveries</h3>
               <span class="excerpt-author">by Scarlett Velvet</span>
             </div>
-            
-            <SecretContent trigger="hover" revealText="Hover to unveil" maskStyle="blur">
+
+            <SecretContent
+              trigger="hover"
+              revealText="Hover to unveil"
+              maskStyle="blur"
+            >
               <div class="excerpt-content">
                 <p>
-                  "The ballroom sparkled with a thousand candles, yet none shone brighter than the 
-                  fire in his eyes when they met hers across the crowded dance floor. Society's 
-                  rules meant nothing in that moment of pure, electric connection."
+                  "The ballroom sparkled with a thousand candles, yet none shone
+                  brighter than the fire in his eyes when they met hers across
+                  the crowded dance floor. Society's rules meant nothing in that
+                  moment of pure, electric connection."
                 </p>
                 <p>
-                  "Lady Catherine's gloved hand trembled as she accepted his invitation to dance, 
-                  knowing that this waltz would be the beginning of either her greatest triumph 
-                  or her most exquisite downfall."
+                  "Lady Catherine's gloved hand trembled as she accepted his
+                  invitation to dance, knowing that this waltz would be the
+                  beginning of either her greatest triumph or her most exquisite
+                  downfall."
                 </p>
               </div>
             </SecretContent>
@@ -277,29 +355,34 @@ const upcomingSalons = [
   </InkTransition>
 
   <!-- Join the Collective Section -->
-  <InkTransition direction="down" color="crimson" intensity="medium" trigger="scroll">
+  <InkTransition
+    direction="down"
+    color="crimson"
+    intensity="medium"
+    trigger="scroll"
+  >
     <section class="section section-velvet" id="join">
       <div class="container">
         <div class="section-header">
           <h2 class="section-title">Join Our Collective</h2>
           <p class="section-description">
-            Ready to join a community where passion meets prose? Submit your application 
-            and become part of our distinguished literary family.
+            Ready to join a community where passion meets prose? Submit your
+            application and become part of our distinguished literary family.
           </p>
         </div>
-        
+
         <div class="join-form-container">
           <form class="join-form">
             <div class="form-group">
               <label for="name">Your Name</label>
-              <input type="text" id="name" name="name" required>
+              <input type="text" id="name" name="name" required />
             </div>
-            
+
             <div class="form-group">
               <label for="email">Email Address</label>
-              <input type="email" id="email" name="email" required>
+              <input type="email" id="email" name="email" required />
             </div>
-            
+
             <div class="form-group">
               <label for="genre">Preferred Genre</label>
               <select id="genre" name="genre" required>
@@ -312,7 +395,7 @@ const upcomingSalons = [
                 <option value="erotica">Erotic Fiction</option>
               </select>
             </div>
-            
+
             <div class="form-group">
               <label for="experience">Writing Experience</label>
               <select id="experience" name="experience" required>
@@ -322,18 +405,27 @@ const upcomingSalons = [
                 <option value="advanced">Established Professional</option>
               </select>
             </div>
-            
+
             <div class="form-group">
               <label for="sample">Writing Sample (Optional)</label>
-              <textarea id="sample" name="sample" placeholder="Share a brief excerpt of your work..."></textarea>
+              <textarea
+                id="sample"
+                name="sample"
+                placeholder="Share a brief excerpt of your work..."></textarea>
             </div>
-            
-            <SecretContent trigger="hover" revealText="Hover to reveal submission">
+
+            <SecretContent
+              trigger="hover"
+              revealText="Hover to reveal submission"
+            >
               <div class="form-actions">
-                <button type="submit" class="btn btn-primary">Submit Application</button>
+                <button type="submit" class="btn btn-primary"
+                  >Submit Application</button
+                >
                 <p class="form-note">
-                  Applications are reviewed personally by our collective's founding members. 
-                  We celebrate writers of all backgrounds and experience levels.
+                  Applications are reviewed personally by our collective's
+                  founding members. We celebrate writers of all backgrounds and
+                  experience levels.
                 </p>
               </div>
             </SecretContent>
@@ -347,45 +439,40 @@ const upcomingSalons = [
 <style>
   /* Hero Section */
   .section-hero {
-    background: linear-gradient(
-      135deg,
-      #4A0E4E 0%,
-      #0A0A0A 50%,
-      #4A0E4E 100%
-    );
+    background: linear-gradient(135deg, #4a0e4e 0%, #0a0a0a 50%, #4a0e4e 100%);
     position: relative;
     overflow: hidden;
   }
-  
+
   .hero-content {
     text-align: center;
     position: relative;
     z-index: 3;
   }
-  
+
   .hero-title {
     font-size: 4rem;
     font-weight: 600;
-    color: #FFF8E7;
+    color: #fff8e7;
     margin-bottom: 2rem;
     text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   }
-  
+
   .hero-subtitle {
     font-size: 1.25rem;
-    color: #D4A5A5;
+    color: #d4a5a5;
     max-width: 600px;
     margin: 0 auto 3rem;
     line-height: 1.6;
   }
-  
+
   .hero-actions {
     display: flex;
     gap: 1.5rem;
     justify-content: center;
     margin-top: 2rem;
   }
-  
+
   .hero-decoration {
     position: absolute;
     top: 50%;
@@ -394,46 +481,46 @@ const upcomingSalons = [
     opacity: 0.3;
     z-index: 1;
   }
-  
+
   .quill-container {
     width: 200px;
     height: 300px;
     animation: float 6s ease-in-out infinite;
   }
-  
+
   .quill-svg {
     width: 100%;
     height: 100%;
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
   }
-  
+
   /* Section Headers */
   .section-header {
     text-align: center;
     margin-bottom: 4rem;
   }
-  
+
   .section-title {
     font-size: 2.5rem;
-    color: #FFF8E7;
+    color: #fff8e7;
     margin-bottom: 1rem;
   }
-  
+
   .section-description {
     font-size: 1.1rem;
-    color: #D4A5A5;
+    color: #d4a5a5;
     max-width: 600px;
     margin: 0 auto;
     line-height: 1.6;
   }
-  
+
   /* Salons Grid */
   .salons-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 2rem;
   }
-  
+
   .salon-card {
     background: rgba(10, 10, 10, 0.9);
     border: 1px solid rgba(212, 165, 165, 0.2);
@@ -446,13 +533,13 @@ const upcomingSalons = [
     position: relative;
     overflow: hidden;
   }
-  
+
   .salon-card:hover {
     transform: translateY(-4px);
     border-color: rgba(255, 215, 0, 0.3);
     box-shadow: 0 8px 32px rgba(74, 14, 78, 0.2);
   }
-  
+
   .salon-date {
     display: flex;
     flex-direction: column;
@@ -463,75 +550,75 @@ const upcomingSalons = [
     border: 1px solid rgba(212, 165, 165, 0.2);
     min-width: 100px;
   }
-  
+
   .date-day {
     font-size: 2rem;
     font-weight: 600;
-    color: #FFD700;
+    color: #ffd700;
     line-height: 1;
   }
-  
+
   .date-month {
     font-size: 0.9rem;
-    color: #D4A5A5;
+    color: #d4a5a5;
     text-transform: uppercase;
     letter-spacing: 0.5px;
   }
-  
+
   .date-year {
     font-size: 0.8rem;
-    color: #FFF8E7;
+    color: #fff8e7;
     opacity: 0.7;
   }
-  
+
   .salon-content {
     flex: 1;
   }
-  
+
   .salon-title {
     font-size: 1.5rem;
-    color: #FFF8E7;
+    color: #fff8e7;
     margin-bottom: 1rem;
   }
-  
+
   .salon-description {
-    color: #D4A5A5;
+    color: #d4a5a5;
     line-height: 1.6;
     margin-bottom: 1.5rem;
   }
-  
+
   .salon-details {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
   }
-  
+
   .salon-time,
   .salon-host {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: #FFF8E7;
+    color: #fff8e7;
     font-size: 0.9rem;
   }
-  
+
   .detail-icon {
     width: 16px;
     height: 16px;
-    fill: #FFD700;
+    fill: #ffd700;
   }
-  
+
   .salon-actions {
     margin-top: auto;
   }
-  
+
   /* Reading Room */
   .reading-room-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     gap: 2rem;
   }
-  
+
   .excerpt-card {
     background: rgba(10, 10, 10, 0.9);
     border: 1px solid rgba(212, 165, 165, 0.2);
@@ -541,30 +628,30 @@ const upcomingSalons = [
     position: relative;
     overflow: hidden;
   }
-  
+
   .excerpt-card:hover {
     transform: translateY(-4px);
     border-color: rgba(255, 215, 0, 0.3);
     box-shadow: 0 8px 32px rgba(74, 14, 78, 0.2);
   }
-  
+
   .excerpt-header {
     margin-bottom: 1.5rem;
     text-align: center;
   }
-  
+
   .excerpt-title {
     font-size: 1.25rem;
-    color: #FFF8E7;
+    color: #fff8e7;
     margin-bottom: 0.5rem;
   }
-  
+
   .excerpt-author {
-    color: #D4A5A5;
+    color: #d4a5a5;
     font-style: italic;
     font-size: 0.9rem;
   }
-  
+
   .excerpt-content {
     min-height: 200px;
     padding: 1.5rem;
@@ -572,43 +659,43 @@ const upcomingSalons = [
     border-radius: 8px;
     border: 1px solid rgba(212, 165, 165, 0.1);
   }
-  
+
   .excerpt-content p {
     font-size: 1rem;
     line-height: 1.7;
-    color: #FFF8E7;
+    color: #fff8e7;
     margin-bottom: 1rem;
     font-style: italic;
   }
-  
+
   .excerpt-content p:last-child {
     margin-bottom: 0;
   }
-  
+
   /* Join Form */
   .join-form-container {
     max-width: 600px;
     margin: 0 auto;
   }
-  
+
   .join-form {
     background: rgba(10, 10, 10, 0.9);
     border: 1px solid rgba(212, 165, 165, 0.2);
     border-radius: 16px;
     padding: 3rem;
   }
-  
+
   .form-group {
     margin-bottom: 1.5rem;
   }
-  
+
   .form-group label {
     display: block;
-    color: #D4A5A5;
+    color: #d4a5a5;
     font-weight: 500;
     margin-bottom: 0.5rem;
   }
-  
+
   .form-group input,
   .form-group select,
   .form-group textarea {
@@ -617,70 +704,75 @@ const upcomingSalons = [
     background: rgba(255, 248, 231, 0.05);
     border: 1px solid rgba(212, 165, 165, 0.3);
     border-radius: 8px;
-    color: #FFF8E7;
+    color: #fff8e7;
     font-size: 1rem;
     transition: all 0.3s ease;
   }
-  
+
   .form-group input:focus,
   .form-group select:focus,
   .form-group textarea:focus {
     outline: none;
-    border-color: #FFD700;
+    border-color: #ffd700;
     box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
   }
-  
+
   .form-group textarea {
     min-height: 120px;
     resize: vertical;
   }
-  
+
   .form-actions {
     text-align: center;
     padding: 2rem;
   }
-  
+
   .form-note {
     margin-top: 1rem;
     font-size: 0.9rem;
-    color: #D4A5A5;
+    color: #d4a5a5;
     font-style: italic;
   }
-  
+
   /* Animations */
   @keyframes float {
-    0%, 100% { transform: translateY(-50px); }
-    50% { transform: translateY(-70px); }
+    0%,
+    100% {
+      transform: translateY(-50px);
+    }
+    50% {
+      transform: translateY(-70px);
+    }
   }
-  
+
   /* Responsive Design */
   @media (max-width: 768px) {
     .hero-title {
       font-size: 2.5rem;
     }
-    
+
     .hero-subtitle {
       font-size: 1.1rem;
     }
-    
+
     .hero-actions {
       flex-direction: column;
       align-items: center;
     }
-    
+
     .hero-decoration {
       display: none;
     }
-    
+
     .salons-grid,
     .reading-room-grid {
       grid-template-columns: 1fr;
     }
-    
+
     .salon-card {
       padding: 1.5rem;
     }
-    
+
     .join-form {
       padding: 2rem;
     }

@@ -49,6 +49,10 @@ src/
 - Serif: Crimson Text (headings, literary content)
 - Sans: Inter (UI elements, forms)
 
+**Style**
+- Organic: flowing lines, soft curves, and natural, free-form shapes
+- Neotenic: soft, rounded, and almost childlike features suggesting comfort, approachability, and a gentle, inviting feel.
+
 ### Key Components
 
 #### TypewriterReveal
