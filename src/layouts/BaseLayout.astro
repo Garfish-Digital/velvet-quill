@@ -50,6 +50,9 @@ const {
   <!-- Preload Critical Resources -->
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
   
+  <!-- Font Awesome Pro 7 - Add your Pro Kit URL here -->
+    <script src="https://kit.fontawesome.com/950db21282.js" crossorigin="anonymous"></script>
+    
   <!-- Styles -->
   <style is:global>
     @import '../styles/global.scss';
@@ -58,69 +61,64 @@ const {
 
 <body>
   <!-- Skip to main content for accessibility -->
-  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-gold-ink text-midnight-black px-4 py-2 rounded-md z-50">
+  <a href="#main-content" class="skip-link">
     Skip to main content
   </a>
   
   <!-- Background ambiance -->
-  <div class="fixed inset-0 pointer-events-none z-0">
-    <div class="absolute inset-0 bg-gradient-to-br from-velvet-dark via-midnight-black to-velvet-dark opacity-20"></div>
-    <div class="absolute inset-0 bg-[url('/paper-texture.png')] opacity-5"></div>
+  <div class="bg-ambiance">
+    <div class="bg-gradient"></div>
+    <div class="bg-texture"></div>
   </div>
   
   <!-- Main content -->
-  <main id="main-content" class="relative z-10">
+  <main id="main-content" class="main-content">
     <slot />
   </main>
   
   <!-- Footer -->
-  <footer class="relative z-10 bg-midnight-black border-t border-blush-rose/20 py-12">
+  <footer class="footer">
     <div class="container">
       <div class="grid grid-2 gap-8">
         <div>
-          <h3 class="text-gold-ink mb-4">Velvet Quill</h3>
-          <p class="text-sm opacity-70 mb-4">
+          <h3 class="footer-title">Velvet Quill</h3>
+          <p class="footer-description">
             A sophisticated literary collective where passion meets prose. 
-            Join writers who craft stories that stir the soul and ignite the imagination.
+            Join writers who create stories that stir the soul and ignite the imagination.
           </p>
-          <div class="flex space-x-4">
-            <a href="#" class="text-rose hover:text-gold-ink transition-colors">
+          <div class="footer-social">
+            <a href="#" class="social-link">
               <span class="sr-only">Newsletter</span>
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-              </svg>
+              <i class="fa-duotone fa-solid fa-envelope"></i>
             </a>
-            <a href="#" class="text-rose hover:text-gold-ink transition-colors">
+            <a href="#" class="social-link">
               <span class="sr-only">Twitter</span>
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
-              </svg>
+              <i class="fa-brands fa-x-twitter"></i>
             </a>
-            <a href="#" class="text-rose hover:text-gold-ink transition-colors">
+            <a href="#" class="social-link">
               <span class="sr-only">Instagram</span>
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                <path d="m16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-              </svg>
+              <i class="fa-brands fa-instagram"></i>
             </a>
           </div>
         </div>
         
         <div>
-          <h4 class="text-blush-rose mb-4">Quick Links</h4>
-          <nav class="space-y-2">
-            <a href="#authors" class="block text-sm hover:text-gold-ink transition-colors">Featured Authors</a>
-            <a href="#salons" class="block text-sm hover:text-gold-ink transition-colors">Upcoming Salons</a>
-            <a href="#reading-room" class="block text-sm hover:text-gold-ink transition-colors">Reading Room</a>
-            <a href="#join" class="block text-sm hover:text-gold-ink transition-colors">Join the Collective</a>
+          <h4 class="footer-section-title">Quick Links</h4>
+          <nav class="footer-nav">
+            <a href="#authors" class="footer-nav-link">Featured Authors</a>
+            <span class="link-spacer"> •</span>
+            <a href="#salons" class="footer-nav-link">Upcoming Salons</a>
+            <span class="link-spacer"> •</span>
+            <a href="#reading-room" class="footer-nav-link">Reading Room</a>
+            <span class="link-spacer"> •</span>
+            <a href="#join" class="footer-nav-link">Join the Collective</a>
           </nav>
         </div>
       </div>
       
-      <div class="border-t border-blush-rose/20 mt-8 pt-8 text-center text-sm opacity-60">
+      <div class="footer-bottom">
         <p>&copy; 2024 Velvet Quill Literary Collective. All rights reserved.</p>
-        <p class="mt-2">Crafted with passion and precision for writers who dare to dream.</p>
+        <p class="footer-tagline">Crafted with passion and precision for writers who dare to dream.</p>
       </div>
     </div>
   </footer>
@@ -195,5 +193,147 @@ const {
     overflow: visible;
     clip: auto;
     white-space: normal;
+  }
+
+  /* Background ambiance styles */
+  .bg-ambiance {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .bg-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #4A0E4E 0%, #0A0A0A 50%, #4A0E4E 100%);
+    opacity: 0.2;
+  }
+
+  .bg-texture {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('/paper-texture.png');
+    opacity: 0.05;
+  }
+
+  /* Footer social icons */
+  .footer-social {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .social-link {
+    color: #D4A5A5; /* blush-rose */
+    transition: color 0.3s ease;
+    font-size: 1.25rem;
+  }
+
+  .social-link:hover {
+    color: #FFD700; /* gold-ink */
+  }
+
+  .link-spacer {
+    color: #D4A5A5;
+  }
+
+  /* Skip link styles */
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: #FFD700;
+    color: #0A0A0A;
+    padding: 8px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    z-index: 100;
+    transform: translateY(-100%);
+    transition: transform 0.3s;
+  }
+
+  .skip-link:focus {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    transform: translateY(0%);
+  }
+
+  /* Main content */
+  .main-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Footer styles */
+  .footer {
+    background: rgba(10, 10, 10, 0.95);
+    border-top: 1px solid rgba(212, 165, 165, 0.2);
+    padding: 3rem 0 2rem;
+    margin-top: 4rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer-title {
+    color: #FFD700;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .footer-description {
+    color: rgba(255, 248, 231, 0.7);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .footer-section-title {
+    color: #D4A5A5;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+
+  .footer-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .footer-nav-link {
+    display: block;
+    color: rgba(255, 248, 231, 0.8);
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .footer-nav-link:hover {
+    color: #FFD700;
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(212, 165, 165, 0.2);
+    margin-top: 2rem;
+    padding-top: 2rem;
+    text-align: center;
+    font-size: 0.9rem;
+    opacity: 0.6;
+  }
+
+  .footer-tagline {
+    margin-top: 0.5rem;
+    color: rgba(255, 248, 231, 0.7);
   }
 </style>

@@ -18,7 +18,7 @@ const authors = [
     // image: '/authors/istockphoto-1424859254-1024x1024.jpg',
     image: "/authors/isabella-crimson.jpg",
     excerpt:
-      "In the shadows of the manor, their forbidden love bloomed like midnight roses, beautiful yet dangerous, promising ecstasy and ruin in equal measure.",
+      "In the hushed darkness of the manor, their carnal longing uncoiled like a serpent, beautiful yet venomous, promising pleasure and damnation in equal measure.",
     bookTitle: "Midnight Roses",
     featured: true,
     website: "https://isabellacrimson.com",
@@ -28,30 +28,30 @@ const authors = [
     },
   },
   {
-    name: "Alexandre Noir",
+    name: "Alexandre Gautier",
     bio: "Historical romance specialist weaving tales of passion across centuries, from Victorian parlors to Renaissance courts.",
     genre: "Historical Romance",
     // image: '/authors/istockphoto-505805588-1024x1024.jpg',
-    image: "/authors/alexandre-noir.jpg",
+    image: "/authors/alexandre-gautier.jpg",
     excerpt:
-    "The candlelight danced across her silk gown as she stepped into the ballroom, unaware that destiny waited in the form of a mysterious duke.",
+    "An amber glow licked the bare skin of her shoulder as she glided into the ballroom, unaware that a dark duke waited, his desire a palpable force.",
     bookTitle: "The Duke's Secret",
-    website: "https://alexandrenoir.com",
+    website: "https://alexandregautier.com",
     social: {
-        goodreads: "https://goodreads.com/alexandrenoir",
+        goodreads: "https://goodreads.com/alexandregautier",
     },
 },
 {
-    name: "Scarlett Velvet",
-    bio: "Contemporary romance author exploring the complexities of modern love with elegant prose and captivating characters.",
-    genre: "Contemporary Romance",
-    image: "/authors/scarlett-velvet.jpg",
+    name: "Lyra Vance",
+    bio: "Contemporary erotica author exploring the complexities of modern love with elegant prose and captivating characters.",
+    genre: "Contemporary Erotica",
+    image: "/authors/lyra-vance.jpg",
     excerpt:
-    "She traced the outline of his jaw with trembling fingers, knowing that this moment would change everything between them forever.",
-    bookTitle: "City of Desires",
+    "She traced the outline of his jaw with trembling fingers, knowing the moment he entered her it would change everything between them forever.",
+    bookTitle: "Inhibitions",
     social: {
-      twitter: "https://twitter.com/scarlettvelvet",
-      instagram: "https://instagram.com/scarlettvelvet",
+      twitter: "https://twitter.com/lyravance",
+      instagram: "https://instagram.com/lyravance",
     },
   },
 ];
@@ -68,14 +68,14 @@ const upcomingSalons = [
     title: "Historical Authenticity",
     date: "March 22, 2024",
     time: "8:00 PM EST",
-    host: "Alexandre Noir",
+    host: "Alexandre Gautier",
     description: "Research techniques for creating believable historical romance settings.",
   },
   {
     title: "Dialogue That Seduces",
     date: "March 29, 2024",
     time: "7:30 PM EST",
-    host: "Scarlett Velvet",
+    host: "Lyra Vance",
     description: "Master the subtle art of conversation that reveals character and desire.",
   },
 ];
@@ -87,15 +87,15 @@ const upcomingSalons = [
     <div class="container">
       <div class="hero-content">
         <TypewriterReveal
-          text="Where Passion Meets Prose"
+          text="Velvet Quill"
           tag="h1"
           className="hero-title"
           delay={500}
           speed={80}
         />
-
+        <br>
         <TypewriterReveal
-          text="A sophisticated literary collective for writers who dare to explore the depths of human desire through elegant prose and captivating storytelling."
+          text="A literary collective for writers who dare to explore the depths of human desire."
           tag="p"
           className="hero-subtitle"
           delay={3000}
@@ -114,39 +114,7 @@ const upcomingSalons = [
       <!-- Decorative quill illustration -->
       <div class="hero-decoration">
         <div class="quill-container">
-          <svg
-            class="quill-svg"
-            viewBox="0 0 200 300"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M100 20C120 40 140 80 145 120C150 160 140 200 130 230C120 250 100 280 100 280"
-              stroke="#FFD700"
-              stroke-width="3"
-              fill="none"
-              opacity="0.7"></path>
-            <path d="M100 280L95 270L105 270Z" fill="#FFD700" opacity="0.7"
-            ></path>
-            <path
-              d="M50 50C70 30 90 25 100 30"
-              stroke="#D4A5A5"
-              stroke-width="2"
-              fill="none"
-              opacity="0.5"></path>
-            <path
-              d="M60 80C80 60 95 55 100 60"
-              stroke="#D4A5A5"
-              stroke-width="2"
-              fill="none"
-              opacity="0.5"></path>
-            <path
-              d="M70 110C85 95 95 90 100 95"
-              stroke="#D4A5A5"
-              stroke-width="2"
-              fill="none"
-              opacity="0.5"></path>
-          </svg>
+          <i class="fa-duotone fa-solid fa-feather-pointed quill-icon"></i>
         </div>
       </div>
     </div>
@@ -211,26 +179,12 @@ const upcomingSalons = [
 
                   <div class="salon-details">
                     <div class="salon-time">
-                      <svg
-                        class="detail-icon"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                      >
-                        <circle cx="12" cy="12" r="10" />
-                        <polyline points="12,6 12,12 16,14" />
-                      </svg>
+                      <i class="fa-duotone fa-solid fa-clock detail-icon"></i>
                       <span>{salon.time}</span>
                     </div>
 
                     <div class="salon-host">
-                      <svg
-                        class="detail-icon"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                      >
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                        <circle cx="12" cy="7" r="4" />
-                      </svg>
+                      <i class="fa-duotone fa-solid fa-user detail-icon"></i>
                       <span>Hosted by {salon.host}</span>
                     </div>
                   </div>
@@ -268,27 +222,21 @@ const upcomingSalons = [
         <div class="reading-room-grid">
           <div class="excerpt-card">
             <div class="excerpt-header">
-              <h3 class="excerpt-title">Whispers in Velvet</h3>
+              <h3 class="excerpt-title">Whispers down the Hall</h3>
               <span class="excerpt-author">by Isabella Crimson</span>
             </div>
 
             <SecretContent
               trigger="hover"
-              revealText="Hover to unveil"
-              maskStyle="ink"
+              revealText="Touch to unveil"
+              maskStyle="blur"
             >
               <div class="excerpt-content">
                 <p>
-                  "The library held secrets in more than just its books. Between
-                  the leather-bound volumes and beneath the watchful gaze of
-                  marble statues, Elena discovered that some stories were meant
-                  to be lived, not merely read."
+                  "The library held secrets in more than just its books. Between the hushed aisles and beneath the shadowed gaze of silent portraits, Elena discovered that some hungers were meant to be sated, not merely suppressed."
                 </p>
                 <p>
-                  "His fingers traced the spine of Keats' collected works, but
-                  his eyes never left her face. 'Poetry,' he murmured, 'is the
-                  language of the soul when words alone fail to capture the
-                  intensity of what we feel.'"
+                  "His fingers traced the skin on the back of her neck, a slow, deliberate line. 'This,' he murmured, 'is the language of the body, when words alone fail to capture the intensity of what we feel.'"
                 </p>
               </div>
             </SecretContent>
@@ -297,26 +245,20 @@ const upcomingSalons = [
           <div class="excerpt-card">
             <div class="excerpt-header">
               <h3 class="excerpt-title">Metropolitan Hearts</h3>
-              <span class="excerpt-author">by Alexandre Noir</span>
+              <span class="excerpt-author">by Alexandre Gautier</span>
             </div>
 
             <SecretContent
               trigger="hover"
-              revealText="Hover to unveil"
-              maskStyle="veil"
+              revealText="Touch to unveil"
+              maskStyle="blur"
             >
               <div class="excerpt-content">
                 <p>
-                  "Rain painted the city in shades of longing, each droplet
-                  carrying the weight of unspoken words between them. On the
-                  corner of Fifth and Main, where their worlds collided, time
-                  seemed to pause."
+                  "Rain lashed the city, each droplet a cold promise of isolation, and still the heat between them burned. On the corner of Fifth and Main, where their worlds collided, the space between their bodies vanished."
                 </p>
                 <p>
-                  "She stood beneath the amber streetlight, her silhouette a
-                  poem against the urban canvas. He realized then that some
-                  encounters are not mere coincidence, but destiny wearing the
-                  mask of chance."
+                  "He saw her silhouette against the gaslight, a dangerous grace against the urban canvas. He knew then that some encounters are not mere coincidence, but an insatiable hunger wearing the mask of chance."
                 </p>
               </div>
             </SecretContent>
@@ -324,27 +266,21 @@ const upcomingSalons = [
 
           <div class="excerpt-card">
             <div class="excerpt-header">
-              <h3 class="excerpt-title">Regency Reveries</h3>
-              <span class="excerpt-author">by Scarlett Velvet</span>
+              <h3 class="excerpt-title">Swiftly into Eternity</h3>
+              <span class="excerpt-author">by Lyra Vance</span>
             </div>
 
             <SecretContent
               trigger="hover"
-              revealText="Hover to unveil"
+              revealText="Touch to unveil"
               maskStyle="blur"
             >
               <div class="excerpt-content">
                 <p>
-                  "The ballroom sparkled with a thousand candles, yet none shone
-                  brighter than the fire in his eyes when they met hers across
-                  the crowded dance floor. Society's rules meant nothing in that
-                  moment of pure, electric connection."
+                  "The club pulsed with a thousand bodies, yet none of them mattered but one. His gaze found hers across the crowded room, a visceral charge that sparked a single, breathless truth: this was a dangerous game she was desperate to lose."
                 </p>
                 <p>
-                  "Lady Catherine's gloved hand trembled as she accepted his
-                  invitation to dance, knowing that this waltz would be the
-                  beginning of either her greatest triumph or her most exquisite
-                  downfall."
+                  "Her fingers burned as she let him take her hand, a deep ache swirling between her thighs. She knew this single touch was the beginning of her most exquisite downfall — a reckless surrender from which she would never want to recover."
                 </p>
               </div>
             </SecretContent>
@@ -416,7 +352,7 @@ const upcomingSalons = [
 
             <SecretContent
               trigger="hover"
-              revealText="Hover to reveal submission"
+              revealText="Touch for submission"
             >
               <div class="form-actions">
                 <button type="submit" class="btn btn-primary"
@@ -488,10 +424,35 @@ const upcomingSalons = [
     animation: float 6s ease-in-out infinite;
   }
 
-  .quill-svg {
-    width: 100%;
-    height: 100%;
+  .quill-icon {
+    font-size: 8rem;
+    color: #FFD700;
+    opacity: 0.7;
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    transform: rotate(-15deg);
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, #FFD700 0%, #D4A5A5 50%, #FFD700 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+  }
+
+  .quill-icon::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: radial-gradient(ellipse at center, transparent 60%, rgba(255, 215, 0, 0.1) 100%);
+    border-radius: 50%;
+    animation: glow 4s ease-in-out infinite alternate;
+  }
+
+  .quill-container:hover .quill-icon {
+    transform: rotate(-15deg) scale(1.1);
+    opacity: 0.9;
   }
 
   /* Section Headers */
@@ -603,9 +564,9 @@ const upcomingSalons = [
   }
 
   .detail-icon {
-    width: 16px;
-    height: 16px;
-    fill: #ffd700;
+    font-size: 1rem;
+    color: #ffd700;
+    margin-right: 0.5rem;
   }
 
   .salon-actions {
@@ -709,6 +670,19 @@ const upcomingSalons = [
     transition: all 0.3s ease;
   }
 
+  /* Safari/iOS select height consistency */
+  .form-group select {
+    height: 3.25rem; /* Fixed height for consistency */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23D4A5A5' d='M6 9L1.5 4.5h9z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 12px;
+    padding-right: 3rem;
+  }
+
   .form-group input:focus,
   .form-group select:focus,
   .form-group textarea:focus {
@@ -742,6 +716,17 @@ const upcomingSalons = [
     }
     50% {
       transform: translateY(-70px);
+    }
+  }
+
+  @keyframes glow {
+    0% {
+      opacity: 0.3;
+      transform: scale(0.95);
+    }
+    100% {
+      opacity: 0.6;
+      transform: scale(1.05);
     }
   }
 

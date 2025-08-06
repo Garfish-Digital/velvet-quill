@@ -31,7 +31,7 @@
     background: linear-gradient(
       135deg,
       rgba($primary-deep-velvet, $opacity) 0%,
-      rgba($primary-deep-velvet, $opacity * 0.5) 50%,
+      rgba($primary-deep-velvet, $opacity * 0.05) 50%,
       rgba($primary-deep-velvet, $opacity) 100%
     );
     background-size: 40px 40px;
@@ -147,7 +147,7 @@
     $accent-gold-ink 100%
   );
   background-size: 200% 100%;
-  animation: goldShimmer 2s infinite;
+  animation: goldShimmer 6s infinite;
   
   @keyframes goldShimmer {
     0% { background-position: 200% 0; }
