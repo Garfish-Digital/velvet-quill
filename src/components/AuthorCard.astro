@@ -1,5 +1,11 @@
 ---
 import SecretContent from './SecretContent.astro';
+import Icon from './Icon.tsx';
+
+// Font Awesome icon imports - Professional approach
+import { faGlobe, faBook } from '@fortawesome/pro-duotone-svg-icons';
+
+import { faXTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons';
 
 export interface Props {
   name: string;
@@ -80,28 +86,28 @@ const {
     <div class="author-social">
       {website && (
         <a href={website} target="_blank" rel="noopener noreferrer" class="social-link">
-          <i class="fa-duotone fa-solid fa-globe social-icon"></i>
+          <Icon icon={faGlobe} className="social-icon" client:load />
           <span>Website</span>
         </a>
       )}
       
       {social.twitter && (
         <a href={social.twitter} target="_blank" rel="noopener noreferrer" class="social-link">
-          <i class="fa-brands fa-x-twitter social-icon"></i>
+          <Icon icon={faXTwitter} className="social-icon" client:load />
           <span>Twitter</span>
         </a>
       )}
       
       {social.instagram && (
         <a href={social.instagram} target="_blank" rel="noopener noreferrer" class="social-link">
-          <i class="fa-brands fa-instagram social-icon"></i>
+          <Icon icon={faInstagram} className="social-icon" client:load />
           <span>Instagram</span>
         </a>
       )}
       
       {social.goodreads && (
         <a href={social.goodreads} target="_blank" rel="noopener noreferrer" class="social-link">
-          <i class="fa-duotone fa-solid fa-book social-icon"></i>
+          <Icon icon={faBook} className="social-icon" client:load />
           <span>Goodreads</span>
         </a>
       )}

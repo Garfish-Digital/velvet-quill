@@ -1,4 +1,8 @@
 ---
+import Icon from "../components/Icon.tsx";
+import { faEnvelope } from '@fortawesome/pro-duotone-svg-icons';
+import { faXTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons';
+
 export interface Props {
   title: string;
   description?: string;
@@ -54,12 +58,7 @@ const {
   <!-- Preload Critical Resources -->
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
   
-  <!-- Font Awesome Pro 7 - Enhanced loading for mobile compatibility -->
-  <link rel="preconnect" href="https://kit.fontawesome.com" crossorigin>
-  <script src="https://kit.fontawesome.com/950db21282.js" crossorigin="anonymous" async></script>
-  <noscript>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
-  </noscript>
+  <!-- Font Awesome Pro - No more DOM watching needed with proper components -->
     
   <!-- Styles -->
   <style is:global>
@@ -97,15 +96,15 @@ const {
           <div class="footer-social">
             <a href="#" class="social-link">
               <span class="sr-only">Newsletter</span>
-              <i class="fa-duotone fa-solid fa-envelope"></i>
+              <Icon icon={faEnvelope} client:load />
             </a>
             <a href="#" class="social-link">
               <span class="sr-only">Twitter</span>
-              <i class="fa-brands fa-x-twitter"></i>
+              <Icon icon={faXTwitter} client:load />
             </a>
             <a href="#" class="social-link">
               <span class="sr-only">Instagram</span>
-              <i class="fa-brands fa-instagram"></i>
+              <Icon icon={faInstagram} client:load />
             </a>
           </div>
         </div>

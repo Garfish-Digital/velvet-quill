@@ -4,6 +4,10 @@ import TypewriterReveal from "../components/TypewriterReveal.astro";
 import InkTransition from "../components/InkTransition.astro";
 import SecretContent from "../components/SecretContent.astro";
 import AuthorCard from "../components/AuthorCard.astro";
+import Icon from "../components/Icon.tsx";
+
+// Font Awesome icon imports - Professional approach with duotone styling
+import { faClock, faUser } from '@fortawesome/pro-duotone-svg-icons';
 
 const siteTitle = "Velvet Quill - Where Passion Meets Prose";
 const siteDescription =
@@ -214,13 +218,13 @@ const upcomingSalons = [
 
                   <div class="salon-details">
                     <div class="salon-time">
-                      <i class="fa-duotone fa-solid fa-clock detail-icon"></i>
-                      <span>{salon.time}</span>
+                      <Icon icon={faClock} className="detail-icon" client:load />
+                      <span class="salon-detail-text">{salon.time}</span>
                     </div>
 
                     <div class="salon-host">
-                      <i class="fa-duotone fa-solid fa-user detail-icon"></i>
-                      <span>Hosted by {salon.host}</span>
+                      <Icon icon={faUser} className="detail-icon" client:load />
+                      <span class="salon-detail-text">Hosted by {salon.host}</span>
                     </div>
                   </div>
                 </div>
@@ -583,16 +587,18 @@ const upcomingSalons = [
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: #fff8e7;
+    color: #ffd700;
     font-size: 0.9rem;
+}
+
+.salon-detail-text {
+    color: #fff8e7;
   }
 
   .detail-icon {
     font-size: 1rem;
-    color: #ffd700;
     margin-right: 0.5rem;
   }
-
   .salon-actions {
     margin-top: auto;
   }
